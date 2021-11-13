@@ -14,14 +14,14 @@
           />
           <div class="align-self-end mb-5 me-3">
             <i class="mdi button1 mdi-48px mdi-github selectable1"></i>
-            <i class="mdi button1 mdi-48px mdi-linkedin"></i>
-            <i class="button1 mdi mdi-48px mdi-account-details"></i>
+            <i class="mdi button1 mdi-48px mdi-linkedin selectable1"></i>
+            <i class="button1 mdi mdi-48px mdi-account-details selectable1"></i>
           </div>
         </div>
         <div class="cont">
           <p class="text-secondary m-0 p-0 fs-5">{{ activeProfile.class }}</p>
           <h3>{{ activeProfile.name }}</h3>
-          <p class="fs-5 fst-italic line">{{ activeProfile.bio }}</p>
+          <p class="fs-5 fst-italic line pe-4">{{ activeProfile.bio }}</p>
         </div>
         <div v-show="account.id == activeProfile.id" class="text-end me-3">
           <p class="p-1 pb-2">
@@ -186,6 +186,7 @@ export default {
   border-radius: 50%;
   margin-top: 17vh;
   margin-left: 8vh;
+  object-fit: cover;
 }
 .back {
   // background-image: v-bind(coverImg);
