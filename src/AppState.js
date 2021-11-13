@@ -10,5 +10,6 @@ export const AppState = reactive({
   newer: null,
   older: null,
   profiles: null,
-  activeProfile: {}
+  activeProfile: {},
+  banners: []
 })

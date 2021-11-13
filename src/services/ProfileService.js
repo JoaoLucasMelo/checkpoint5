@@ -17,7 +17,9 @@ class ProfileService{
         AppState.activeProfile = res.data
         logger.log('ACTIVE PROFILE',AppState.activeProfile)
   }
-
+  async profile(){
+    AppState.activeProfile = AppState.account
+  }
 }
 
 export const profileService = new ProfileService()

@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="col-md-2">
-    <Ad />
+    <Banner />
   </div>
 </template>
 

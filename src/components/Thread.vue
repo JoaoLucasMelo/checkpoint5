@@ -3,16 +3,17 @@
     <div v-for="p in posts" :key="p.id">
       <Post :post="p" />
     </div>
-    <div class="d-flex flex-row">
-      <div>
-        <h3 @click="newer" class="selectable">
+
+    <div class="d-flex flex-row justify-content-center">
+      <div class="mb-2 mx-5 pags" v-show="newer !== undefined || null">
+        <h4 @click="newerf" class="selectable">
           <i class="mdi mdi-chevron-left"></i> Newer
-        </h3>
+        </h4>
       </div>
-      <div>
-        <h3 class="selectable" @click="older">
+      <div class="mb-2 mx-5 pags" v-show="older !== undefined || null">
+        <h4 class="selectable" @click="olderf">
           Older <i class="mdi mdi-chevron-right"></i>
-        </h3>
+        </h4>
       </div>
     </div>
   </div>
@@ -31,7 +32,7 @@ export default {
       newer: computed(() => AppState.newer),
       older: computed(() => AppState.older),
       posts: computed(() => AppState.posts),
-      async newer() {
+      async newerf() {
         try {
           if (AppState.newer !== undefined || null) {
             await postService.newer();
@@ -41,7 +42,7 @@ export default {
           Pop.toast(error.message, "error");
         }
       },
-      async older() {
+      async olderf() {
         try {
           if (AppState.older !== undefined) {
             await postService.older();
@@ -58,4 +59,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.pags {
+  color: rgb(88, 87, 87);
+}
 </style>

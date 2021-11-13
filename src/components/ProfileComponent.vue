@@ -20,8 +20,10 @@
         </div>
         <div class="cont">
           <p class="text-secondary m-0 p-0 fs-5">{{ activeProfile.class }}</p>
-          <h3>{{ activeProfile.name }}</h3>
-          <p class="fs-5 fst-italic line pe-4">{{ activeProfile.bio }}</p>
+          <h3 class="textcolor">{{ activeProfile.name }}</h3>
+          <p class="fs-5 fst-italic line pe-4 textcolor">
+            {{ activeProfile.bio }}
+          </p>
         </div>
         <div v-show="account.id == activeProfile.id" class="text-end me-3">
           <p class="p-1 pb-2">
@@ -38,75 +40,79 @@
           </p>
           <form @submit="edit">
             <div class="collapse" id="collapseExample">
-              <div class="card card-body m-2 ms-3 me-0 border-0">
-                <div class="d-flex">
-                  <p><small>Name: </small></p>
-                  <input
-                    v-model="editable.name"
-                    class="form-control inputtext m-1"
-                    type="text"
-                    name="name"
-                    :placeholder="account.name"
-                    id=""
-                  />
-                  <p><small>Class:</small></p>
-                  <input
-                    v-model="editable.class"
-                    class="form-control inputtext m-1"
-                    type="text"
-                    name="class"
-                    :placeholder="account.class"
-                    id=""
-                  />
+              <div class="card card-body me-0 border-0">
+                <div class="d-flex flex-column align-items-center">
+                  <div class="d-flex justify-content-between">
+                    <p class="me-1"><small>Name: </small></p>
+                    <input
+                      v-model="editable.name"
+                      class="form-control inputtext m-1 widinput"
+                      type="text"
+                      name="name"
+                      :placeholder="account.name"
+                      id=""
+                    />
+                    <p class="ms-3"><small>Class:</small></p>
+                    <input
+                      v-model="editable.class"
+                      class="form-control inputtext m-1 widinput"
+                      type="text"
+                      name="class"
+                      :placeholder="account.class"
+                      id=""
+                    />
+                  </div>
+                  <div class="d-flex">
+                    <p class="me-2"><small>Cover:</small></p>
+                    <input
+                      v-model="editable.coverImg"
+                      class="form-control inputtext m-1 widinput"
+                      type="url"
+                      name="coverImg"
+                      :placeholder="account.coverImg"
+                      id=""
+                    />
+                    <p><small>Picture:</small></p>
+                    <input
+                      v-model="editable.picture"
+                      class="form-control inputtext m-1 widinput"
+                      type="url"
+                      name="picture"
+                      :placeholder="account.picture"
+                      id=""
+                    />
+                  </div>
+                  <div class="d-flex">
+                    <p><small>GitHub:</small></p>
+                    <input
+                      v-model="editable.github"
+                      class="form-control inputtext m-1 widinput"
+                      type="text"
+                      name="github"
+                      :placeholder="account.github"
+                      id=""
+                    />
+                    <p><small>Linkedin:</small></p>
+                    <input
+                      v-model="editable.linkedin"
+                      class="form-control inputtext m-1 widinput"
+                      type="text"
+                      name="linkedin"
+                      :placeholder="account.linkedin"
+                      id=""
+                    />
+                  </div>
                 </div>
-                <div class="d-flex">
-                  <p><small>Cover:</small></p>
-                  <input
-                    v-model="editable.coverImg"
-                    class="form-control inputtext m-1"
-                    type="url"
-                    name="coverImg"
-                    :placeholder="account.coverImg"
-                    id=""
-                  />
-                  <p><small>Picture:</small></p>
-                  <input
-                    v-model="editable.picture"
-                    class="form-control inputtext m-1"
-                    type="url"
-                    name="picture"
-                    :placeholder="account.picture"
-                    id=""
-                  />
+                <div class="align-self-center bio">
+                  <p class="text-start m-0 p-0"><small>Bio:</small></p>
+                  <textarea
+                    v-model="editable.bio"
+                    class="inputtext mt-2 rounded widbio"
+                    id="exampleFormControlTextarea1"
+                    :placeholder="account.bio"
+                    rows="4"
+                  ></textarea>
                 </div>
-                <div class="d-flex">
-                  <p><small>GitHub:</small></p>
-                  <input
-                    v-model="editable.github"
-                    class="form-control inputtext m-1"
-                    type="text"
-                    name="github"
-                    :placeholder="account.github"
-                    id=""
-                  />
-                  <p><small>Linkedin:</small></p>
-                  <input
-                    v-model="editable.linkedin"
-                    class="form-control inputtext m-1"
-                    type="text"
-                    name="linkedin"
-                    :placeholder="account.linkedin"
-                    id=""
-                  />
-                </div>
-                <p class="text-start m-0 p-0"><small>Bio:</small></p>
-                <textarea
-                  v-model="editable.bio"
-                  class="inputtext mt-2"
-                  id="exampleFormControlTextarea1"
-                  :placeholder="account.bio"
-                  rows="3"
-                ></textarea>
                 <div class="d-flex justify-content-between">
                   <div class="d-flex mt-3">
                     <p class="text-start fw-light me-2">
@@ -220,9 +226,8 @@ export default {
   background-color: #c1b2e400;
 }
 .inputtext {
-  border-style: dashed !important;
   border-width: 2px !important;
-  width: 100% !important;
+
   border-color: #beabeb !important;
   background-color: #f9f2ff !important;
 }
@@ -246,5 +251,19 @@ export default {
 }
 .line {
   line-height: 34px !important;
+}
+.textcolor {
+  color: #4d4d4d;
+}
+
+.widinput {
+  width: 25vh;
+}
+.widbio {
+  width: 100%;
+  max-width: 80vh;
+}
+.bio {
+  width: 90%;
 }
 </style>

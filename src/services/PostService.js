@@ -63,6 +63,17 @@ async older(){
 async like(id){
   const res = await api.post('api/posts/' + id + '/like')
   logger.log(res.data)
+  AppState.posts = AppState.posts
+}
+async edit(data, id){
+const res = await api.put('api/posts/'+ id, data)
+logger.log(res.data)
+let updated = res.data
+let index = AppState.posts.findIndex( p => p.id === updated.id)
+AppState.posts.splice(index, 1, updated)
+}
+async profile(id){
+  this.getPostsProfileById(id)
 }
 }
 export const postService = new PostService()

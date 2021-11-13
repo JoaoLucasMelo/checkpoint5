@@ -1,13 +1,15 @@
 <template>
-  <div class="profilePage col-md-7">
-    <div class="row">
+  <div class="profilePage col-md-8 justify-content-center">
+    <div class="row justify-content-center">
       <ProfileComponent :activeProfile="activeProfile" />
-      <CreatePost />
+      <div v-show="account.id === activeProfile.id">
+        <CreatePost />
+      </div>
       <Thread />
     </div>
   </div>
   <div class="col-md-2">
-    <Ad />
+    <Banner />
   </div>
 </template>
 

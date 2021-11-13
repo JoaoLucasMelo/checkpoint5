@@ -1,9 +1,9 @@
 <template>
-  <div class="createPost mt-4">
+  <div class="createPost mt-4" v-show="account.id">
     <div class="card p-3 my-2 elevation-2 flex-row d-flex">
       <div class="col-2 d-flex justify-content-center">
         <img
-          class="profilePic m-2 me-3"
+          class="profilePic elevation-3 m-2 me-3"
           height="75"
           width="75"
           :src="account.picture"
@@ -11,7 +11,7 @@
         />
       </div>
       <div class="col-10 p-1">
-        <form @submit="create">
+        <form @submit.prevent="create">
           <div class="mb-3">
             <textarea
               v-model="editable.body"
@@ -42,7 +42,7 @@
                 />
               </div>
             </div>
-            <div class="d-flex flex-row selectable">
+            <div @click="create" class="d-flex flex-row selectable">
               <i class="mdi colorTheme mdi-24px mdi-rotate-315 mdi-send"> </i>
               <p class="ps-1 pt-1 me-1 colorpost mb-1 fs-5">Post</p>
             </div>
@@ -66,12 +66,15 @@ export default {
     let imgBtn = ref(true);
     return {
       account: computed(() => AppState.account),
+      profile: computed(() => AppState.profile),
       imgBtn,
       editable,
       async create() {
         try {
-          imgBtn.value = !imgBtn.value;
+          imgBtn.value = true;
           await postService.create(editable.value);
+          editable.value = {};
+          Pop.toast("Post created!", "success");
         } catch (error) {
           logger.error(error);
           Pop.toast(error.message, "error");
@@ -89,14 +92,14 @@ export default {
   border-width: 2px;
   width: 100%;
   border-color: #beabeb;
-  background-color: #f9f2ff;
+  background-color: #f9f2ffce;
 }
 .imgurl {
   border-style: dashed !important;
   border-width: 2px !important;
   width: 40vh !important;
   border-color: #beabeb !important;
-  background-color: #f9f2ff;
+  background-color: #f9f2ffca;
 }
 .colorTheme {
   color: #a892dd;
