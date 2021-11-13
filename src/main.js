@@ -1,4 +1,5 @@
 import '@mdi/font/css/materialdesignicons.css'
+
 import 'bootstrap'
 import { createApp } from 'vue'
 // @ts-ignore

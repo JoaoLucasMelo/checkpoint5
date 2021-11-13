@@ -15,6 +15,7 @@ class ProfileService{
     const res = await api.get('api/profiles/' + id)
         logger.log('GET PROFILE BY ID',res.data)
         AppState.activeProfile = res.data
+        logger.log('ACTIVE PROFILE',AppState.activeProfile)
   }
 
 }

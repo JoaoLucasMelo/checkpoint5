@@ -29,9 +29,8 @@ async getPostsProfileById(id){
   logger.log('GET POST BY PROFILE ID',res.data)
   AppState.posts = res.data.posts
   AppState.pages = res.data.page
-  let end = res.data.older
-  AppState.older = res.data.older
-  AppState.newer = res.data.newer
+  AppState.older = res.data.older?.split('/')[4]
+  AppState.newer = res.data.newer?.split('/')[4]
 }
 async create(data){
 
@@ -60,6 +59,10 @@ async older(){
   AppState.older = res.data.older?.split('/')[4]
   AppState.newer = res.data.newer?.split('/')[4]
   logger.log(AppState.newer)
+}
+async like(id){
+  const res = await api.post('api/posts/' + id + '/like')
+  logger.log(res.data)
 }
 }
 export const postService = new PostService()

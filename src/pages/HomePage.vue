@@ -1,42 +1,37 @@
 <template>
-    <div class="home col-10">
-      <div class="row">
-        <CreatePost />
-        <Thread />
-      </div>
+  <div class="home col-md-8 justify-content-center">
+    <div class="row justify-content-center">
+      <CreatePost />
+      <Thread />
     </div>
-    <div class="col-2">
+  </div>
+  <div class="col-md-2">
     <Ad />
-    </div>
-
+  </div>
 </template>
 
 <script>
-import { onMounted } from "@vue/runtime-core"
-import { logger } from "../utils/Logger"
-import Pop from "../utils/Pop"
-import {postService} from "../services/PostService"
+import { onMounted } from "@vue/runtime-core";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
+import { postService } from "../services/PostService";
 
 export default {
-  name: 'Home',
-  setup(){
-    onMounted(async() => {
+  name: "Home",
+  setup() {
+    onMounted(async () => {
       try {
-        await postService.getAll()
+        await postService.getAll();
       } catch (error) {
-        logger.error(error)
-        Pop.toast(error.message, 'error')
+        logger.error(error);
+        Pop.toast(error.message, "error");
       }
-    })
+    });
 
-
-    return{
-  }
-  }}
+    return {};
+  },
+};
 </script>
 
 <style scoped lang="scss">
-
-
-
 </style>
