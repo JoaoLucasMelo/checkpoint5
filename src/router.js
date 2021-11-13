@@ -12,14 +12,14 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: loadPage('AboutPage')
+    path: '/search',
+    name: 'Search',
+    component: loadPage('SearchPage')
   },
   {
-    path: '/account',
-    name: 'Account',
-    component: loadPage('AccountPage'),
+    path: '/profile',
+    name: 'Profile',
+    component: loadPage('ProfilePage'),
     beforeEnter: authGuard
   }
 ]

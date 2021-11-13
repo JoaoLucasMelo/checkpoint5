@@ -1,14 +1,23 @@
 <template>
   <header>
-    <Navbar />
   </header>
-  <main>
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col-2">
+
+      </div>
+      <div class="col-10">
+        <div class="row">
+          <Navbar />
+        </div>
+        <div class="row">
     <router-view />
+        </div>
+      </div>
+    </div>
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
-    </div>
+
   </footer>
 </template>
 

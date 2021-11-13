@@ -20,13 +20,10 @@
     >
       <span class="navbar-toggler-icon" />
     </button>
+    <SearchResult />
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
-          </router-link>
-        </li>
+        
       </ul>
       <span class="navbar-text">
         <button
@@ -56,9 +53,9 @@
             class="dropdown-menu p-0 list-group w-100"
             aria-labelledby="authDropdown"
           >
-            <router-link :to="{ name: 'Account' }">
+            <router-link :to="{ name: 'Profile' }">
               <div class="list-group-item list-group-item-action hoverable">
-                Manage Account
+                Manage Profile
               </div>
             </router-link>
             <div
