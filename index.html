@@ -18,7 +18,14 @@
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
+  <script type="text/javascript" src="vanilla-tilt.js"></script>
   <script type="module" src="./src/main.js"></script>
+  <script type="text/javascript">
+    VanillaTilt.init(document.querySelectorAll(".card"), {
+      max: 25,
+      speed: 400
+    });
+  </script>
 </body>
 
 </html>

@@ -58,7 +58,7 @@
             <p class="m-0 mt-4 text-secondary text-center">
               {{ account.class }}
             </p>
-            <h2 class="textcolor text-center">
+            <h2 class="textcolor text text-center">
               {{ account.name
               }}<i
                 v-show="account.graduated"
@@ -66,8 +66,10 @@
               ></i>
             </h2>
           </div>
-          <div
+          <a
+            :href="'https://github.com/' + account.github"
             class="
+              selectable1
               d-flex
               flex-row
               justify-content-center
@@ -79,8 +81,9 @@
           >
             <i class="mdi mdi-36px mdi-github"></i>
             <h6 class="m-0">{{ account.github }}</h6>
-          </div>
-          <div
+          </a>
+          <a
+            :href="'https://linkedin.com/in/' + account.linkedin"
             class="
               d-flex
               button1
@@ -92,7 +95,7 @@
           >
             <i class="mdi mdi-36px mdi-linkedin"></i>
             <h6 class="m-0">{{ account.linkedin }}</h6>
-          </div>
+          </a>
           <div
             @click="profile"
             class="
@@ -176,6 +179,12 @@ export default {
 
 
 <style lang="scss" scoped>
+.text {
+  max-width: 25vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .cardleft {
   height: 100vh;
 }

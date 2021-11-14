@@ -24,7 +24,7 @@
               </h5>
             </router-link>
             <h6 class="ms-2 text-secondary render-time">
-              <small>{{ post.creator.createdAt }}</small>
+              <small>{{ created }}</small>
               <i
                 v-show="post.creator.graduated"
                 class="ms-2 mdi mdi-18px mdi-school"
@@ -145,17 +145,20 @@ import Pop from "../utils/Pop";
 import { AppState } from "../AppState";
 import { watchEffect } from "@vue/runtime-core";
 import { format, render, cancel, register } from "timeago.js";
+import moment from "moment";
 export default {
   props: { post: { type: Object, required: true } },
   setup(props) {
     const editable = ref({});
     let edithere = ref(true);
+    let time = props.post.creator.createdAt;
+    let created = format(time);
     return {
+      created,
       edithere,
       editable,
       account: computed(() => AppState.account),
       posts: computed(() => AppState.posts),
-      time: computed(() => props.post.creator.createdAt),
       async like() {
         try {
           await postService.like(props.post.id);
@@ -181,6 +184,7 @@ export default {
           edithere.value = true;
           await postService.edit(editable.value, props.post.id);
           editable.value = {};
+          Pop.toast("Post edited!", "success");
         } catch (error) {
           logger.log(error);
           Pop.toast(error.message, "error");

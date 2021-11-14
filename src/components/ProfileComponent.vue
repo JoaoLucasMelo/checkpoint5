@@ -21,11 +21,15 @@
               :href="'https://linkedin.com/in/' + activeProfile?.linkedin"
               class="mdi button1 mdi-48px mdi-linkedin selectable1"
             ></a>
-            <a class="button1 mdi mdi-48px mdi-account-details selectable1"></a>
+            <a
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              class="button1 mdi mdi-48px mdi-account-details selectable1 none"
+            ></a>
           </div>
         </div>
         <div class="cont">
-          <p class="text-secondary m-0 p-0 fs-5">{{ activeProfile.class }}</p>
+          <p class="text-secondary m-0 p-0 fs-6">{{ activeProfile.class }}</p>
           <h3 class="textcolor">{{ activeProfile.name }}</h3>
           <p class="fs-5 fst-italic line pe-4 textcolor">
             {{ activeProfile.bio }}
@@ -152,6 +156,36 @@
               </div>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade cardmobile"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered cardmobile">
+        <div
+          class="
+            modal-content
+            bg-transparent
+            border-0
+            text-light
+            d-flex
+            cardmobile
+          "
+        >
+          <div class="text-end">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"><Card /></div>
         </div>
       </div>
     </div>
@@ -290,6 +324,10 @@ export default {
 .bio {
   width: 90%;
 }
+.bg-dark-blur {
+  background: rgba(24, 24, 24, 0.562);
+  backdrop-filter: blur(20px);
+}
 @media only screen and (max-width: 600px) {
   .iconsmbl {
     flex-direction: column;
@@ -314,6 +352,12 @@ export default {
   }
   .textstart {
     text-align: left;
+  }
+  .cardmobile {
+    width: 90% !important;
+  }
+  .none {
+    display: none;
   }
 }
 </style>

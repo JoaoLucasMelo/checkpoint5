@@ -1,5 +1,5 @@
 <template>
-  <div class="profileResultComponent px-2 col-11">
+  <div class="profileResultComponent px-2 col-12">
     <div v-for="p in profiles" :key="p.id">
       <router-link class="" :to="{ name: 'Profile', params: { id: p._id } }">
         <div class="card selectable p-2 m-1 mt-3 d-flex flex-row">

@@ -4,8 +4,8 @@
       <div class="col-md-2 d-flex justify-content-center media">
         <img
           class="profilePic elevation-3 m-2 me-3 media"
-          height="75"
-          width="75"
+          height="80"
+          width="80"
           :src="account.picture"
           alt=""
         />
