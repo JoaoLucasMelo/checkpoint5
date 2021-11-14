@@ -1,5 +1,5 @@
 <template>
-  <div class="postSearchResult">
+  <div class="postSearchResult me-2">
     <form @submit.prevent="searchTool" class="input-group">
       <input
         @keyup="searchTool"
@@ -11,7 +11,7 @@
         id=""
         required
       />
-      <button class="btn btn-outline-primary">
+      <button class="btn btn-outline-light">
         <i class="mdi-18px mdi mdi-magnify"></i>
       </button>
     </form>

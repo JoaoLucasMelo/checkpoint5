@@ -16,16 +16,32 @@
         v-show="!user.isAuthenticated"
         class="d-flex flex-column align-items-center justify-content-center"
       >
-        <h3 v-show="!user.isAuthenticated">Login</h3>
-        <h3 v-show="!user.isAuthenticated">to</h3>
-        <h3 v-show="!user.isAuthenticated">Connect!</h3>
-        <button
+        <h3 class="textcolor" v-show="!user.isAuthenticated"></h3>
+        <img
+          v-show="!user.isAuthenticated"
+          class="mb-4"
+          height="50"
+          src="../assets/img/Untitledpurple.png"
+          alt=""
+        />
+        <i
           v-show="!user.isAuthenticated"
           @click="login"
-          class="btn btn-success mt-3"
+          class="
+            mdi-24px
+            selectable
+            mdi mdi-share-variant-outline
+            fs-3
+            border
+            p-2
+            px-3
+            pb-3
+            btnlogin
+            textcolor
+          "
         >
           Login
-        </button>
+        </i>
       </div>
       <div class="">
         <div></div>
@@ -95,13 +111,24 @@
         </div>
         <div class="logout d-flex justify-content-center">
           <div class="align-self-end">
-            <button
+            <i
               v-show="user.isAuthenticated"
               @click="logout"
-              class="btn btn-outline-danger"
+              class="
+                mdi-18px
+                selectable
+                mdi mdi-share-variant
+                fs-5
+                border
+                p-1
+                px-2
+                pb-2
+                btnlogout
+                textcolor
+              "
             >
               Logout
-            </button>
+            </i>
           </div>
         </div>
       </div>
@@ -182,6 +209,16 @@ export default {
 }
 .connect {
   height: 70vh;
+}
+.btnlogin {
+  border-radius: 20%;
+  border-width: 3px !important;
+  border-color: #a892dd !important;
+}
+.btnlogout {
+  border-radius: 20%;
+  border-width: 2px !important;
+  border-color: #dd5a5a !important;
 }
 @media only screen and (max-width: 600px) {
   .media {

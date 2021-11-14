@@ -39,4 +39,14 @@ export default {
 
 
 <style lang="scss" scoped>
+@media only screen and (max-width: 600px) {
+  .mobile {
+    display: block;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .mobile {
+    display: none;
+  }
+}
 </style>

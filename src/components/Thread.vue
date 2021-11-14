@@ -6,12 +6,12 @@
 
     <div class="d-flex flex-row justify-content-center">
       <div class="mb-2 mx-5 pags" v-show="newer !== undefined || null">
-        <h4 @click="newerf" class="selectable">
+        <h4 @click="newerf" class="selectable pagesmbl">
           <i class="mdi mdi-chevron-left"></i> Newer
         </h4>
       </div>
       <div class="mb-2 mx-5 pags" v-show="older !== undefined || null">
-        <h4 class="selectable" @click="olderf">
+        <h4 class="selectable pagesmbl" @click="olderf">
           Older <i class="mdi mdi-chevron-right"></i>
         </h4>
       </div>
@@ -61,5 +61,13 @@ export default {
 <style lang="scss" scoped>
 .pags {
   color: rgb(88, 87, 87);
+}
+@media only screen and (max-width: 600px) {
+  .mobile {
+    display: none;
+  }
+  .pagesmbl {
+    font-size: 16px !important;
+  }
 }
 </style>

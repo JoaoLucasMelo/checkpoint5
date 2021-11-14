@@ -1,11 +1,17 @@
 <template>
   <div class="home col-md-8 justify-content-center">
     <div class="row justify-content-center">
+      <div class="mobile">
+        <!-- <div class="m-1 justify-content-between d-flex">
+          <button class="btn btn-primary mt-2">My Profile</button>
+          <button class="btn btn-primary mt-2">Logout</button>
+        </div> -->
+      </div>
       <CreatePost />
       <Thread />
     </div>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-2 bann">
     <Banner />
   </div>
 </template>
@@ -34,4 +40,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@media only screen and (max-width: 600px) {
+  .mobile {
+    display: block;
+  }
+  .bann {
+    display: none;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .mobile {
+    display: none;
+  }
+  .bann {
+    display: block;
+  }
+}
 </style>

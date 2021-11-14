@@ -6,11 +6,12 @@
       color
       px-3
       justify-content-between
+      mbf
     "
   >
-    <div class="col-4">
+    <div class="col-md-4">
       <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-        <div class="d-flex flex-column align-items-center">
+        <div class="d-flex flex-column align-items-center ms-2">
           <img
             alt="logo"
             src="../assets/img/a11275f644e278a1bf2cf0021c5f1648-removebg-preview.png"
@@ -19,8 +20,48 @@
         </div>
       </router-link>
     </div>
-    <div class="col-4">
+    <div class="col-md-4">
       <SearchResult />
+    </div>
+    <div class="col-md-4 mobilenav">
+      <div class="m-1 justify-content-between d-flex">
+        <button v-show="user.isAuthenticated" class="btn btn-primary mt-2">
+          My Profile
+        </button>
+        <i
+          v-show="!user.isAuthenticated"
+          @click="login"
+          class="
+            mdi-18px
+            selectable
+            mdi mdi-share-variant-outline
+            fs-6
+            border
+            p-1
+            btnlogin
+            textcolor
+            mb-2
+          "
+        >
+          Login
+        </i>
+        <i
+          v-show="user.isAuthenticated"
+          @click="logout"
+          class="
+            selectable
+            mdi mdi-share-variant
+            fs-6
+            border
+            btnlogout
+            text-light
+            mt-2
+            p-1
+          "
+        >
+          Logout
+        </i>
+      </div>
     </div>
   </nav>
 </template>
@@ -77,5 +118,28 @@ a:hover {
     rgba(139, 108, 218, 1) 0%,
     rgba(181, 160, 232, 1) 100%
   );
+}
+.btnlogout {
+  border-radius: 15%;
+  border-width: 2px !important;
+  border-color: #dd5a5a !important;
+}
+.btnlogin {
+  border-radius: 20%;
+  border-width: 3px !important;
+  border-color: #e1dfe4 !important;
+}
+.textcolor {
+  color: #4d4d4d;
+}
+@media only screen and (max-width: 600px) {
+  .mbf {
+    justify-content: center !important;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .mobilenav {
+    display: none;
+  }
 }
 </style>

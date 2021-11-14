@@ -1,21 +1,21 @@
 <template>
   <div class="createPost mt-5" v-show="account.id">
     <div class="card p-3 pt-4 my-2 elevation-2 flex-row d-flex">
-      <div class="col-2 d-flex justify-content-center">
+      <div class="col-md-2 d-flex justify-content-center media">
         <img
-          class="profilePic elevation-3 m-2 me-3"
+          class="profilePic elevation-3 m-2 me-3 media"
           height="75"
           width="75"
           :src="account.picture"
           alt=""
         />
       </div>
-      <div class="col-10 p-1">
+      <div class="col-md-10 cardmbl just p-1">
         <form @submit.prevent="create">
           <div class="mb-3">
             <textarea
               v-model="editable.body"
-              class="inputtext mt-1"
+              class="inputtext mt-1 p-2"
               id="exampleFormControlTextarea1"
               placeholder=" Share what's happening"
               rows="4"
@@ -97,7 +97,7 @@ export default {
 .imgurl {
   border-style: dashed !important;
   border-width: 2px !important;
-  width: 40vh !important;
+  width: 100% !important;
   border-color: #beabeb !important;
   background-color: #f9f2ffca;
 }
@@ -107,5 +107,20 @@ export default {
 }
 .colorpost {
   color: rgb(100, 100, 100);
+}
+@media only screen and (max-width: 600px) {
+  .media {
+    display: none;
+  }
+  .imgurl {
+    border-style: dashed !important;
+    border-width: 2px !important;
+    width: 90% !important;
+    border-color: #beabeb !important;
+    background-color: #f9f2ffca;
+  }
+  .cardmbl {
+    width: 100%;
+  }
 }
 </style>

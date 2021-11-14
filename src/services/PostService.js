@@ -63,7 +63,7 @@ async older(){
 async like(id){
   const res = await api.post('api/posts/' + id + '/like')
   logger.log(res.data)
-  AppState.posts = AppState.posts
+  this.getAll
 }
 async edit(data, id){
 const res = await api.put('api/posts/'+ id, data)

@@ -200,7 +200,7 @@ export default {
   background-size: 100% 28vh;
   background-repeat: no-repeat;
   position: unset;
-  object-fit: cover;
+  object-fit: cover !important;
   height: auto;
 }
 .cont {
