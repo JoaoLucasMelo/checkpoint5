@@ -16,9 +16,10 @@
           </router-link>
           <div>
             <router-link
+              class="colorname"
               :to="{ name: 'Profile', params: { id: post.creatorId } }"
             >
-              <h5 class="ms-2 text-dark">
+              <h5 class="ms-2 colorname">
                 <b>{{ post.creator.name }}</b>
               </h5>
             </router-link>
@@ -26,7 +27,7 @@
               <small>{{ post.creator.createdAt }}</small>
               <i
                 v-show="post.creator.graduated"
-                class="mdi mdi-18px mdi-school"
+                class="ms-2 mdi mdi-18px mdi-school"
               ></i>
             </h6>
           </div>
@@ -117,7 +118,9 @@
       </div>
       <div v-else class="d-flex justify-content-end align-items-center">
         <a><i class="mdi mdi-24px colorTheme mdi-heart"></i> </a>
-        <p class="m-0 m-2">{{ post.likeIds.length }}</p>
+        <p class="m-0 m-2">
+          {{ post.likeIds.length }}
+        </p>
       </div>
     </div>
   </div>
@@ -209,5 +212,8 @@ export default {
 }
 .imageposted {
   border-radius: 20% !important;
+}
+.colorname {
+  color: rgb(102, 102, 102) !important;
 }
 </style>

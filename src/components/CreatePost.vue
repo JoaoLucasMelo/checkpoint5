@@ -1,6 +1,6 @@
 <template>
-  <div class="createPost mt-4" v-show="account.id">
-    <div class="card p-3 my-2 elevation-2 flex-row d-flex">
+  <div class="createPost mt-5" v-show="account.id">
+    <div class="card p-3 pt-4 my-2 elevation-2 flex-row d-flex">
       <div class="col-2 d-flex justify-content-center">
         <img
           class="profilePic elevation-3 m-2 me-3"
