@@ -8,7 +8,7 @@
       <Thread />
     </div>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-2 mobile">
     <Banner />
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
   setup() {
     const route = useRoute();
     onMounted(async () => {
-      logger.log("ROUTE", route.params);
+      // logger.log("ROUTE", route.params);
       try {
         await profileService.getProfileById(route.params.id);
         await postService.getPostsProfileById(route.params.id);
@@ -46,5 +46,10 @@ export default {
 <style scoped>
 img {
   max-width: 100px;
+}
+@media only screen and (max-width: 600px) {
+  .mobile {
+    display: none;
+  }
 }
 </style>

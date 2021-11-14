@@ -202,7 +202,7 @@ export default {
   background-color: #c1b2e400;
 }
 .textcolor {
-  color: #4d4d4d;
+  color: #7a7878 !important;
 }
 .logout {
   height: 20vh;

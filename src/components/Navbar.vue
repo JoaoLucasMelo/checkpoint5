@@ -23,44 +23,68 @@
     <div class="col-md-4">
       <SearchResult />
     </div>
-    <div class="col-md-4 mobilenav">
-      <div class="m-1 justify-content-between d-flex">
-        <button v-show="user.isAuthenticated" class="btn btn-primary mt-2">
-          My Profile
-        </button>
-        <i
-          v-show="!user.isAuthenticated"
-          @click="login"
-          class="
-            mdi-18px
-            selectable
-            mdi mdi-share-variant-outline
-            fs-6
-            border
-            p-1
-            btnlogin
-            textcolor
-            mb-2
-          "
-        >
-          Login
-        </i>
-        <i
-          v-show="user.isAuthenticated"
-          @click="logout"
-          class="
-            selectable
-            mdi mdi-share-variant
-            fs-6
-            border
-            btnlogout
-            text-light
-            mt-2
-            p-1
-          "
-        >
-          Logout
-        </i>
+    <div class="mobilenav">
+      <div class="col-md-4 mobilenav d-flex align-items-center">
+        <div class="m-1 d-flex align-items-center mobilenav">
+          <div @click="profile" class="me-5 d-flex align-items-center">
+            <i
+              v-show="user.isAuthenticated"
+              class="
+                mdi
+                selectable1
+                mdi-36px
+                mobilenav
+                mdi-account-details
+                mt-2
+              "
+            ></i>
+            <p
+              v-show="user.isAuthenticated"
+              class="m-0 mobilenav ms-2 selectable1"
+            >
+              My Profile
+            </p>
+          </div>
+          <i
+            v-show="!user.isAuthenticated"
+            @click="login"
+            class="
+              mdi-18px
+              selectable
+              mdi mdi-share-variant-outline
+              fs-6
+              border
+              p-1
+              mobilenav
+              pt-1
+              btnlogin
+              textcolor
+              mb-2
+              mt-2
+            "
+          >
+            Login
+          </i>
+          <div class="ms-5">
+            <i
+              v-show="user.isAuthenticated"
+              @click="logout"
+              class="
+                selectable
+                mdi mdi-share-variant
+                fs-6
+                border
+                mobilenav
+                btnlogout
+                text-light
+                mt-2
+                p-1
+              "
+            >
+              Logout
+            </i>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -70,11 +94,27 @@
 import { AuthService } from "../services/AuthService";
 import { AppState } from "../AppState";
 import { computed } from "vue";
+import { profileService } from "../services/ProfileService";
+import { postService } from "../services/PostService";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
+import { useRouter } from "vue-router";
 export default {
   setup() {
+    const router = useRouter();
     return {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
+      async profile() {
+        try {
+          await profileService.profile();
+          await postService.profile(this.account.id);
+          router.push({ name: "Profile", params: { id: this.account.id } });
+        } catch (error) {
+          logger.log(error);
+          Pop.toast(error.message, "error");
+        }
+      },
       async login() {
         AuthService.loginWithPopup();
       },
@@ -122,7 +162,8 @@ a:hover {
 .btnlogout {
   border-radius: 15%;
   border-width: 2px !important;
-  border-color: #dd5a5a !important;
+  border-color: #7e7e7e !important;
+  background-color: #ca636348 !important;
 }
 .btnlogin {
   border-radius: 20%;
@@ -135,6 +176,9 @@ a:hover {
 @media only screen and (max-width: 600px) {
   .mbf {
     justify-content: center !important;
+  }
+  .mobile {
+    display: none;
   }
 }
 @media only screen and (min-width: 600px) {

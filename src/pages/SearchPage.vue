@@ -4,11 +4,11 @@
       <h1 class="mt-4">People</h1>
       <ProfileResultComponent />
       <h1 class="mt-4">Posts</h1>
-      <h5 v-show="posts.lenght" class="text-secondary">No results for posts</h5>
+      <h5 v-show="!posts" class="text-secondary">No results for posts</h5>
       <Thread />
     </div>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-2 mobile">
     <Banner />
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
   setup() {
     return {
       posts: computed(() => AppState.posts),
+      profiles: computed(() => AppState.profiles),
     };
   },
 };
@@ -33,4 +34,9 @@ export default {
 
 
 <style lang="scss" scoped>
+@media only screen and (max-width: 600px) {
+  .mobile {
+    display: none;
+  }
+}
 </style>

@@ -4,18 +4,24 @@
       class="card bg-white border-0 my-2 back elevation-3 d-flex flex-nowrap"
     >
       <div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex iconsmbl justify-content-between">
           <img
-            class="picture border-0 elevation-3"
+            class="picture border-0 elevation-3 center"
             height="190"
             width="190"
             :src="activeProfile.picture"
             alt=""
           />
-          <div class="align-self-end mb-5 me-3">
-            <i class="mdi button1 mdi-48px mdi-github selectable1"></i>
-            <i class="mdi button1 mdi-48px mdi-linkedin selectable1"></i>
-            <i class="button1 mdi mdi-48px mdi-account-details selectable1"></i>
+          <div class="align-self-end align mb-5 me-3">
+            <a
+              :href="'https://github.com/' + activeProfile?.github"
+              class="mdi button1 mdi-48px mdi-github selectable1"
+            ></a>
+            <a
+              :href="'https://linkedin.com/in/' + activeProfile?.linkedin"
+              class="mdi button1 mdi-48px mdi-linkedin selectable1"
+            ></a>
+            <a class="button1 mdi mdi-48px mdi-account-details selectable1"></a>
           </div>
         </div>
         <div class="cont">
@@ -40,10 +46,10 @@
           </p>
           <form @submit="edit">
             <div class="collapse" id="collapseExample">
-              <div class="card card-body me-0 border-0">
-                <div class="d-flex flex-column align-items-center">
-                  <div class="d-flex justify-content-between">
-                    <p class="me-1"><small>Name: </small></p>
+              <div class="card card-body me-0 border-0 textstart">
+                <div class="row d-flex flex-column align-items-center">
+                  <div class="col-12 d-flex justify-content-around forms">
+                    <p class=""><small>Name: </small></p>
                     <input
                       v-model="editable.name"
                       class="form-control inputtext m-1 widinput"
@@ -52,7 +58,7 @@
                       :placeholder="account.name"
                       id=""
                     />
-                    <p class="ms-3"><small>Class:</small></p>
+                    <p class=""><small>Class:</small></p>
                     <input
                       v-model="editable.class"
                       class="form-control inputtext m-1 widinput"
@@ -62,8 +68,8 @@
                       id=""
                     />
                   </div>
-                  <div class="d-flex">
-                    <p class="me-2"><small>Cover:</small></p>
+                  <div class="d-flex col-12 justify-content-around forms">
+                    <p class=""><small>Cover:</small></p>
                     <input
                       v-model="editable.coverImg"
                       class="form-control inputtext m-1 widinput"
@@ -72,7 +78,7 @@
                       :placeholder="account.coverImg"
                       id=""
                     />
-                    <p><small>Picture:</small></p>
+                    <p class=""><small>Picture:</small></p>
                     <input
                       v-model="editable.picture"
                       class="form-control inputtext m-1 widinput"
@@ -82,8 +88,8 @@
                       id=""
                     />
                   </div>
-                  <div class="d-flex">
-                    <p><small>GitHub:</small></p>
+                  <div class="d-flex col-12 justify-content-around forms">
+                    <p class=""><small>GitHub:</small></p>
                     <input
                       v-model="editable.github"
                       class="form-control inputtext m-1 widinput"
@@ -92,7 +98,7 @@
                       :placeholder="account.github"
                       id=""
                     />
-                    <p><small>Linkedin:</small></p>
+                    <p class=""><small>Linkedin:</small></p>
                     <input
                       v-model="editable.linkedin"
                       class="form-control inputtext m-1 widinput"
@@ -157,22 +163,40 @@
 import { computed, ref } from "@vue/reactivity";
 import { AppState } from "../AppState";
 import { accountService } from "../services/AccountService";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { profileService } from "../services/ProfileService";
+import { postService } from "../services/PostService";
+import Pop from "../utils/Pop";
+import { logger } from "../utils/Logger";
 
 export default {
   props: { activeProfile: { type: Object, required: true } },
   setup(props) {
     const editable = ref({});
+    const router = useRouter();
     return {
       editable,
-      account: computed(() => AppState.account),
+      user: computed(() => AppState.user),
       activeProfile: computed(() => AppState.activeProfile),
       coverImg: computed(() => `url(${props.activeProfile.coverImg})`),
       async edit() {
         try {
           await accountService.edit(editable.value);
+          router.push({ name: "Profile", params: { id: this.account.id } });
+          Pop.toast("Profile Updated", "success");
         } catch (error) {
           logger.error(error);
+          Pop.toast(error.message, "error");
+        }
+      },
+      account: computed(() => AppState.account),
+      async profile() {
+        try {
+          await profileService.profile();
+          await postService.profile(this.account.id);
+          router.push({ name: "Profile", params: { id: this.account.id } });
+        } catch (error) {
+          logger.log(error);
           Pop.toast(error.message, "error");
         }
       },
@@ -257,7 +281,7 @@ export default {
 }
 
 .widinput {
-  width: 25vh;
+  width: 31vh;
 }
 .widbio {
   width: 100%;
@@ -265,5 +289,31 @@ export default {
 }
 .bio {
   width: 90%;
+}
+@media only screen and (max-width: 600px) {
+  .iconsmbl {
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .center {
+    justify-self: center;
+    justify-content: center;
+    margin: 0;
+    margin-top: 17vh;
+  }
+  .align {
+    align-self: center !important;
+    margin-top: 2vh;
+  }
+  .forms {
+    flex-direction: column;
+  }
+  .widinput {
+    width: 100%;
+  }
+  .textstart {
+    text-align: left;
+  }
 }
 </style>

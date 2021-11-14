@@ -1,6 +1,6 @@
 <template>
   <header></header>
-  <main class="container-fluid">
+  <main class="container-fluid scrollbar">
     <div class="row">
       <div class="col-md-2 p-0">
         <Login />
@@ -39,5 +39,17 @@ export default {
 .scroll {
   height: 91vh;
   overflow-y: scroll;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: #6e8070;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e9e9e9;
+  border-radius: 10px;
 }
 </style>

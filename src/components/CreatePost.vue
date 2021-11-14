@@ -1,5 +1,5 @@
 <template>
-  <div class="createPost mt-5" v-show="account.id">
+  <div class="createPost mt-5 mtop" v-show="account.id">
     <div class="card p-3 pt-4 my-2 elevation-2 flex-row d-flex">
       <div class="col-md-2 d-flex justify-content-center media">
         <img
@@ -121,6 +121,9 @@ export default {
   }
   .cardmbl {
     width: 100%;
+  }
+  .mtop {
+    margin-top: 1vh !important;
   }
 }
 </style>

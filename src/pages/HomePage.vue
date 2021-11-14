@@ -1,5 +1,5 @@
 <template>
-  <div class="home col-md-8 justify-content-center">
+  <div class="home col-md-8 justify-content-center scrollbar">
     <div class="row justify-content-center">
       <div class="mobile">
         <!-- <div class="m-1 justify-content-between d-flex">
@@ -40,6 +40,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: #6e8070;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e9e9e9;
+  border-radius: 10px;
+}
 @media only screen and (max-width: 600px) {
   .mobile {
     display: block;

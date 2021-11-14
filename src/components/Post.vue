@@ -32,14 +32,24 @@
             </h6>
           </div>
         </div>
-        <div class="align-self-top" v-if="post.creatorId === account.id">
+        <div
+          class="align-self-top marginbtns"
+          v-if="post.creatorId === account.id"
+        >
           <div>
             <i
               title="Edit post"
               @click="edithere = !edithere"
               data-bs-toggle="collapse"
               :href="'#a' + post.id + 'a'"
-              class="mdi mdi-24px mdi-pencil colorTheme selectable1 grow me-2"
+              class="
+                mdi mdi-24px mdi-pencil
+                colorTheme
+                selectable1
+                marginbtns
+                grow
+                me-2
+              "
             ></i>
             <i
               title="Delete post"
@@ -57,7 +67,7 @@
 
               <input
                 v-model="editable.imgUrl"
-                class="form-control inputtext m-1"
+                class="form-control inputborder m-1"
                 type="url"
                 name=""
                 id=""
@@ -134,6 +144,7 @@ import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import { AppState } from "../AppState";
 import { watchEffect } from "@vue/runtime-core";
+import { format, render, cancel, register } from "timeago.js";
 export default {
   props: { post: { type: Object, required: true } },
   setup(props) {
@@ -144,9 +155,11 @@ export default {
       editable,
       account: computed(() => AppState.account),
       posts: computed(() => AppState.posts),
+      time: computed(() => props.post.creator.createdAt),
       async like() {
         try {
           await postService.like(props.post.id);
+          await postService.getAll();
         } catch (error) {
           logger.error(error);
           Pop.toast(error.message, "error");
@@ -213,7 +226,16 @@ export default {
 .imageposted {
   border-radius: 20% !important;
 }
+.inputborder {
+  border-color: rgb(214, 212, 212) !important;
+}
 .colorname {
   color: rgb(102, 102, 102) !important;
+}
+@media only screen and (max-width: 600px) {
+  .marginbtns {
+    margin-right: 0 !important;
+    text-align: right !important;
+  }
 }
 </style>

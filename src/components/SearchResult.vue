@@ -2,7 +2,6 @@
   <div class="postSearchResult me-2">
     <form @submit.prevent="searchTool" class="input-group">
       <input
-        @keyup="searchTool"
         v-model="search"
         class="form-control"
         placeholder="Search..."

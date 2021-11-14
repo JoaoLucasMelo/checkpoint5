@@ -9,13 +9,13 @@ class ProfileService{
     const res = await api.get('api/profiles?query=' + query)
     // logger.log('GET PROFILES',res.data)
     AppState.profiles = res.data
-        logger.log('GET PROFILES',AppState.profiles)
+        // logger.log('GET PROFILES',AppState.profiles)
   }
   async getProfileById(id){
     const res = await api.get('api/profiles/' + id)
-        logger.log('GET PROFILE BY ID',res.data)
+        // logger.log('GET PROFILE BY ID',res.data)
         AppState.activeProfile = res.data
-        logger.log('ACTIVE PROFILE',AppState.activeProfile)
+        // logger.log('ACTIVE PROFILE',AppState.activeProfile)
   }
   async profile(){
     AppState.activeProfile = AppState.account

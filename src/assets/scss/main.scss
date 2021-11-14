@@ -36,3 +36,15 @@ form:invalid button[type="submit"] {
   filter: grayscale(1);
   pointer-events: none;
 }
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: #6e8070;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e9e9e9;
+  border-radius: 10px;
+}
