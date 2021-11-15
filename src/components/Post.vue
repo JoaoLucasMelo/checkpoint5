@@ -19,7 +19,7 @@
               class="colorname"
               :to="{ name: 'Profile', params: { id: post.creatorId } }"
             >
-              <h5 class="ms-2 colorname">
+              <h5 class="ms-2 colorname text">
                 <b>{{ post.creator.name }}</b>
               </h5>
             </router-link>
@@ -240,6 +240,12 @@ export default {
   .marginbtns {
     margin-right: 0 !important;
     text-align: right !important;
+  }
+  .text {
+    max-width: 27vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 </style>

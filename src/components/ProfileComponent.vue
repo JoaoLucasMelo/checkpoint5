@@ -31,8 +31,8 @@
         <div class="cont">
           <p class="text-secondary m-0 p-0 fs-6">{{ activeProfile.class }}</p>
           <h3 class="textcolor">{{ activeProfile.name }}</h3>
-          <p class="fs-5 fst-italic line pe-4 textcolor">
-            {{ activeProfile.bio }}
+          <p class="fs-5 fst-italic line pe-4 textcolor mb-4 mt-3">
+            {{ "“" + activeProfile.bio + "”" }}
           </p>
         </div>
         <div v-show="account.id == activeProfile.id" class="text-end me-3">
